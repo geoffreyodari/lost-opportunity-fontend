@@ -53,7 +53,7 @@ const uploadForm = ()=>{
 
                                                         </div>
                                                         <div class="mb-3 text-center">
-                                                        <button type="button" class="btn btn-dark" id="upload">Upload</button>
+                                                        <button type="button" class="btn btn-dark" id="upload" onclick="upload()">Upload</button>
                                                         </div>  
                                                     </form>
 

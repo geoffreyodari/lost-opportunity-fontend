@@ -1,5 +1,8 @@
+
+
 let myData;
 const output = document.querySelector("#output");
+
 const path="http://"+window.location.hostname;
 
 class Card{
@@ -271,11 +274,11 @@ const  displayActivityData = async ( index ) =>{
 }
 
 
-const fetchData = async ()=>{
-    let fromDate = document.querySelector("#fromdate").value;
-    let toDate = null//document.querySelector("#todate").value;
-    let channel = document.querySelector("#channel").value;
-    let response = await fetch(`${path}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&todate=${toDate}&channel=${channel}`)
+const fetchData = async (fromDate=new Date().toISOString().slice(0, 10),selectedChannel="Inbound")=>{
+    // let fromDate = document.querySelector("#fromdate").value;
+    // let toDate = null//document.querySelector("#todate").value;
+    // let channel = document.querySelector("#channel").value;
+    let response = await fetch(`${path}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&channel=${selectedChannel}`)
     let data = await response.json()
     myData = await data
     loadLostOpportunitySummaryPage(await myData)
@@ -431,7 +434,12 @@ const loadLostOpportunitySummaryPage = ( data )=>{
 
                             }
 
-document.querySelector("#search").addEventListener('click',()=>fetchData())
+document.querySelector("#search").addEventListener('click',()=>{
+                                                                let fromInput = document.querySelector("#fromdate").value
+                                                                let channelInput = document.querySelector("#channel").value
+                                                                fetchData(fromDate=fromInput,selectedChannel=channelInput)
+                                                            }
+)
 
 document.querySelector("#uploadPage").addEventListener('click',(e)=>{
     e.preventDefault()
@@ -440,5 +448,7 @@ document.querySelector("#uploadPage").addEventListener('click',(e)=>{
 
 document.querySelector("#homePage").addEventListener('click',(e)=>{
     e.preventDefault()
-    document.querySelector("#output").innerHTML=`<h4 class="text-center text-white">${new Date()}</h4>`
+    fetchData()
 })
+
+fetchData()
