@@ -8,7 +8,7 @@ const radioButtons = document.querySelectorAll('input[name="dataContentRadio"]')
 
 const uploadSheetData= async (data)=>{
     const response = await fetch(
-        'http://localhost/lost_opportunity/all/import_data.php',
+            path+'/lost_opportunity/all/import_data.php',
         {
             method:"POST",
             body:data,

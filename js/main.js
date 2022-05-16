@@ -1,5 +1,6 @@
 let myData;
 const output = document.querySelector("#output");
+const path="http://"+window.location.hostname;
 
 class Card{
     constructor(data){
@@ -274,7 +275,7 @@ const fetchData = async ()=>{
     let fromDate = document.querySelector("#fromdate").value;
     let toDate = null//document.querySelector("#todate").value;
     let channel = document.querySelector("#channel").value;
-    let response = await fetch(`http://${window.location.hostname}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&todate=${toDate}&channel=${channel}`)
+    let response = await fetch(`${path}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&todate=${toDate}&channel=${channel}`)
     let data = await response.json()
     myData = await data
     loadLostOpportunitySummaryPage(await myData)
@@ -431,6 +432,7 @@ const loadLostOpportunitySummaryPage = ( data )=>{
                             }
 
 document.querySelector("#search").addEventListener('click',()=>fetchData())
+
 document.querySelector("#uploadPage").addEventListener('click',(e)=>{
     e.preventDefault()
     uploadForm()

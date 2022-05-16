@@ -46,7 +46,7 @@ const uploadForm = ()=>{
                                                         
                                                         <div class="col-lg-6 col-sm-12 mb-3">
                                                             <label for="formFileSm" class="form-label">Upload data</label>
-                                                            <input class="form-control form-control-sm" id="formFileSm" type="file">
+                                                            <input class="form-control form-control-sm" id="formFileSm" accept=".csv" type="file">
                                                         </div>
                                                         </div>
 
