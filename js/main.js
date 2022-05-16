@@ -275,9 +275,6 @@ const  displayActivityData = async ( index ) =>{
 
 
 const fetchData = async (fromDate=new Date().toISOString().slice(0, 10),selectedChannel="Inbound")=>{
-    // let fromDate = document.querySelector("#fromdate").value;
-    // let toDate = null//document.querySelector("#todate").value;
-    // let channel = document.querySelector("#channel").value;
     let response = await fetch(`${path}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&channel=${selectedChannel}`)
     let data = await response.json()
     myData = await data
@@ -441,9 +438,9 @@ document.querySelector("#search").addEventListener('click',()=>{
                                                             }
 )
 
-document.querySelector("#uploadPage").addEventListener('click',(e)=>{
+document.querySelector("#importPage").addEventListener('click',(e)=>{
     e.preventDefault()
-    uploadForm()
+    importForm()
 })
 
 document.querySelector("#homePage").addEventListener('click',(e)=>{

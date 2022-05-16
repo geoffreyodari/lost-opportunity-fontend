@@ -1,6 +1,6 @@
-const uploadForm = ()=>{
+const importForm = ()=>{
    document.querySelector("#output").innerHTML =`<div class="card  bg-vivian-red p-3 mb-3">
-                                                    <h4 class="text-center">Upload</h4>
+                                                    <h4 class="text-center">Import</h4>
 
                                                     <form class="row">
                                                         <div class="row">
@@ -41,11 +41,11 @@ const uploadForm = ()=>{
                                                         <div class="row col-sm-12 col-lg-6">
                                                         <div class="col-lg-6 col-sm-12 mb-3">
                                                             <label for="formFileSm" class="form-label">Date</label>
-                                                            <input class="form-control form-control-sm" type="date" placeholder="Default input" aria-label="default input example" id="date">
+                                                            <input class="form-control form-control-sm" type="date" placeholder="Default input" aria-label="default input example" id="importDate">
                                                         </div>
                                                         
                                                         <div class="col-lg-6 col-sm-12 mb-3">
-                                                            <label for="formFileSm" class="form-label">Upload data</label>
+                                                            <label for="formFileSm" class="form-label">Import CSV data</label>
                                                             <input class="form-control form-control-sm" id="formFileSm" accept=".csv" type="file">
                                                         </div>
                                                         </div>
@@ -53,7 +53,7 @@ const uploadForm = ()=>{
 
                                                         </div>
                                                         <div class="mb-3 text-center">
-                                                        <button type="button" class="btn btn-dark" id="upload" onclick="upload()">Upload</button>
+                                                        <button type="button" class="btn btn-dark" id="import" onclick="importSpreadsheetData()">Import CSV</button>
                                                         </div>  
                                                     </form>
 

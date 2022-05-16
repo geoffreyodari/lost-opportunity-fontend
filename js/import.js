@@ -1,12 +1,6 @@
-const uploadButton = document.querySelector("#upload");
 
-const fileInput = document.querySelector('#formFileSm')
 
-const date =  document.querySelector('#date')
-
-const radioButtons = document.querySelectorAll('input[name="dataContentRadio"]');
-
-const uploadSheetData= async (data)=>{
+const sendSpreadSheetData= async (data)=>{
     const response = await fetch(
             path+'/lost_opportunity/all/import_data.php',
         {
@@ -18,7 +12,12 @@ const uploadSheetData= async (data)=>{
     return await response.json()
 }
 
-const upload = ()=>{
+const importSpreadsheetData = ()=>{
+    const uploadButton = document.querySelector("#upload");
+    const fileInput = document.querySelector('#formFileSm')
+    const date =  document.querySelector('#importDate')
+    const radioButtons = document.querySelectorAll('input[name="dataContentRadio"]');
+
     let selectedOption;
     let data = new FormData();
     for(const radioButton of radioButtons){
@@ -27,12 +26,12 @@ const upload = ()=>{
                 break;
              }
         }
-
+    
     data.append('date',date.value);
     data.append('fileContentType',selectedOption);
     data.append('file',fileInput.files[0]);
 
-    return (uploadSheetData(data));
+    return (sendSpreadSheetData(data));
 }
 
 
