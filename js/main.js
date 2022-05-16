@@ -437,3 +437,8 @@ document.querySelector("#uploadPage").addEventListener('click',(e)=>{
     e.preventDefault()
     uploadForm()
 })
+
+document.querySelector("#homePage").addEventListener('click',(e)=>{
+    e.preventDefault()
+    document.querySelector("#output").innerHTML=`<h4 class="text-center text-white">${new Date()}</h4>`
+})
