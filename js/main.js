@@ -431,3 +431,7 @@ const loadLostOpportunitySummaryPage = ( data )=>{
                             }
 
 document.querySelector("#search").addEventListener('click',()=>fetchData())
+document.querySelector("#uploadPage").addEventListener('click',(e)=>{
+    e.preventDefault()
+    uploadForm()
+})
