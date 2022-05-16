@@ -263,27 +263,11 @@ const lostOpportunityPie = ( data ) =>{
     })
 }
 
-// const getOpportunityCost = async () =>{
-//     let fromDate = document.querySelector("#fromdate").value;
-//     let toDate = null//document.querySelector("#todate").value;
-//     let channel = document.querySelector("#channel").value;
-    
-
-//     let response = await fetch(`http://${window.location.hostname}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&todate=${toDate}&channel=${channel}`)
-//     let data = await response.json()
-//     await data.map(stat=>output.innerHTML += new Card(stat).item).join("")
-//     await data.map(stat=>{mychart(stat)}).join("")
-// }
-
 const  displayActivityData = async ( index ) =>{
     let i = parseInt(index)
         output.innerHTML = new Card(myData[parseInt(index)]).item
         await activityHourlyChart(myData[index])
 }
-
-
-
-
 
 
 const fetchData = async ()=>{
