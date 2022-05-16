@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: smaller;
+}
+
+.bg-vivian-red{
+    background : rgba(87, 99, 58, 0.27);
+    border:solid 0.5px rgba(27, 10, 10, 0.9);
+    
+      
+}
+
+.bg-vivian-green{
+    border:none;
+    background : rgba(14, 37, 4, 0.466);
+    background:linear-gradient(0deg, rgba(53, 59, 35, 0.801), rgba(87, 99, 58, 0.904));
+      
+}
+
+input[type=date],.form-control{
+    background : rgba(87, 99, 58, 0.27);
+    color:rgb(107, 114, 103); 
+    border:solid 1px   rgba(87, 99, 58, 0.27);
+}
+
+.list-group-item {
+    border: none;
+    color: rgb(107, 114, 103); 
+}
+
+tr:nth-child(even){
+    background : rgba(87, 99, 58, 0.27);
+    color:rgb(107, 114, 103);  
+}
+tr:nth-child(even) a{
+    color:rgb(107, 114, 103);  
+}
+tr:nth-child(odd) a{
+    color:rgba(87, 99, 58, 0.808);
+}
+
+tr:nth-child(odd) a:hover{
+    color:rgba(87, 99, 58, 0.514);
+}
+
+
+.table-sm{
+    border:none;
+    color: rgba(87, 99, 58, 0.808);
+    font-weight: bold; 
+}
+
+h6,label,h4,h5,small,th,.material-icons,.nav-item a{
+   color: rgb(182, 196, 174); 
+}
+
+.nav-item a:hover{
+    color: rgba(87, 99, 58, 0.808); 
+}
+
+.nav-item a:focus{
+    color: rgba(87, 99, 58, 0.808); 
+}
+
+
+
+
+.dropdown-menu {
+    
+    background-color: rgba(87, 99, 58, 0.808); 
+
+}
+
+.dropdown-item:focus{
+    background-color: rgb(182, 196, 174); 
+}
+
+
+.card-header{
+ 
+    background : rgba(87, 99, 58, 0.27);
+    color:rgb(107, 114, 103);  
+
+}
+
