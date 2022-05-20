@@ -273,7 +273,6 @@ const  displayActivityData = async ( index ) =>{
         await activityHourlyChart(myData[index])
 }
 
-
 const fetchData = async (fromDate=new Date().toISOString().slice(0, 10),selectedChannel="Inbound")=>{
     let response = await fetch(`${path}/lost_opportunity/all/lost_opportunity.php?date=${fromDate}&channel=${selectedChannel}`)
     let data = await response.json()
@@ -423,11 +422,58 @@ const  lostOpportunityStackedHourlyChart = ( data )=>{
 
 
 }
+const lostOpportunitySummarySegmentCharts = (data)=>{
+    let summaryPie = document.createElement("div")
+    summaryPie.setAttribute('class','row')
+    const renderSegmentSummaryChart =(ctx,item)=>{
+        
+        
+        if(item.payload.description.length!=0){
+          let myLabel = item.payload.team.map(data=>data.SEGMENT)
+          let myData = item.payload.team.map(data=>data.COUNTOF)
+          let myColors= item.payload.team.map(()=>'rgba('+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', 1)')
+            
+          new Chart(ctx.getContext('2d'), {
+              type: 'pie',
+              data: {
+                  labels: myLabel,
+                  datasets: [{
+                      label:item.title,
+                      data: myData,
+                      backgroundColor: myColors,
+                      borderColor: myColors,
+                      borderWidth: 1
+                  }]
+              },
+              
+          });
+        }
+              
+  
+  
+      
+                      
+    }
+    data.forEach(item=>{
+        
+        let element = document.createElement("canvas");
+        element.setAttribute('id',item.title)
+        let card = document.createElement("div")
+        card.setAttribute('class','col-lg-3 col-md-4 col-sm-6 p-3')
+        summaryPie.append(card)
+        card.append(element)
+        renderSegmentSummaryChart(element,item)  
+       
+    })
+
+    return summaryPie
+}
 
 const loadLostOpportunitySummaryPage = ( data )=>{
     output.innerHTML= lostOpportunitySummaryCards(data);
     container.innerHTML  =  lostOpportunitySummaryTable( data );
     lostOpportunityStackedHourlyChart( data )
+    output.append(lostOpportunitySummarySegmentCharts(data))
 
                             }
 
