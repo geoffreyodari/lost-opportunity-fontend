@@ -30,6 +30,10 @@ input[type=date],.form-control{
     color: rgb(107, 114, 103); 
 }
 
+tr,td{
+    border: none;
+}
+
 tr:nth-child(even){
     background : rgba(87, 99, 58, 0.27);
     color:rgb(107, 114, 103);  

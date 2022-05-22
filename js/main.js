@@ -136,9 +136,9 @@ class Card{
                         <small class="text-center  fw-lighter">*Target hourly ${this.data.hourlyTarget.type} ${this.data.hourlyTarget.value}</small>                                  
                     </div>
                 </div>
-                <canvas  class="col-sm-12 col-lg-16 m-3 pb-2 mx-auto shadow-sm rounded" id="${this.data.title}"  height="200" >
-                           
-                </canvas>  
+                <div class="col-sm-12 col-lg-16 m-3 pb-2 mx-auto shadow-sm rounded">
+                    <canvas   id="${this.data.title}"  height="200" ></canvas> 
+                </div> 
                 
            </div>
            <div class="row">
@@ -213,7 +213,7 @@ const  stackedHourlyChart = ( data )=>{
             this.label = stats.title
             this.data  = stats.payload.hourly.map(output=>output[0].agents)
             this.backgroundColor = [
-                'rgba('+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', 0.5)'
+                'rgba('+Math.floor(Math.random() * 256)+', '+Math.floor(100)+', '+Math.floor(Math.random() * 256)+', 0.5)'
             ]
         }
         
@@ -288,11 +288,11 @@ const  lostOpportunitySummaryTable = ( data ) =>{
         let duration  = stat.payload.time[0].duration;
         if(duration>0){
         tableContent +=`<tr>
-                             <th scope="row">
+                             <td>
                                 <a class="btn btn-sm p-0  fw-bold" href="#" onClick = displayActivityData(${index})>
                                      ${stat.title.toUpperCase()}
                                 </a>
-                            </th>
+                            </td>
                             <td class="text-center">
                                 ${Math.round(duration /3600)}
                             </td>
@@ -339,7 +339,7 @@ const lostOpportunitySummaryCards = ( allData ) =>{
                             </div>
                     
                         <div class="col-sm-12 col-lg-5 mt-3">
-                            <table class=" table-sm">
+                            <table class="table table-responsive table-sm ">
                             <thead class="thead-dark">
                                 <tr class="bg-dark">
                                     <th  scope="col">Activity</th>
@@ -357,16 +357,7 @@ const lostOpportunitySummaryCards = ( allData ) =>{
                             </canvas>                
                             
                         </div>
-                        <div class="col-sm-12 col-lg-6 mt-3">
-                            <canvas id="lostPie">
-                            </canvas>                
-                            
-                        </div>
-                        <div class="col-sm-12 col-lg-6 mt-3">
-                            <canvas id="topTl">
-                            </canvas>                
-                            
-                        </div>
+                        
                     </div>`
 
 }
@@ -425,13 +416,17 @@ const  lostOpportunityStackedHourlyChart = ( data )=>{
 const lostOpportunitySummarySegmentCharts = (data)=>{
     let summaryPie = document.createElement("div")
     summaryPie.setAttribute('class','row')
+    let title = document.createElement("h5")
+    title.setAttribute('class','text-center')
+    title.textContent=("Summary Per segment")
+    summaryPie.append(title)
     const renderSegmentSummaryChart =(ctx,item)=>{
         
         
         if(item.payload.description.length!=0){
           let myLabel = item.payload.team.map(data=>data.SEGMENT)
           let myData = item.payload.team.map(data=>data.COUNTOF)
-          let myColors= item.payload.team.map(()=>'rgba('+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', '+Math.floor(Math.random() * 256)+', 1)')
+          let myColors= item.payload.team.map(()=>'rgba('+Math.floor(Math.random() * 256)+', '+Math.floor(3)+', '+Math.floor(Math.random() * 256)+', 1)')
             
           new Chart(ctx.getContext('2d'), {
               type: 'pie',
@@ -444,7 +439,14 @@ const lostOpportunitySummarySegmentCharts = (data)=>{
                       borderColor: myColors,
                       borderWidth: 1
                   }]
-              },
+              },options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: item.title.toUpperCase()
+                    }
+                }
+            }
               
           });
         }
@@ -459,8 +461,11 @@ const lostOpportunitySummarySegmentCharts = (data)=>{
         let element = document.createElement("canvas");
         element.setAttribute('id',item.title)
         let card = document.createElement("div")
-        card.setAttribute('class','col-lg-3 col-md-4 col-sm-6 p-3')
-        summaryPie.append(card)
+        card.setAttribute('class','col-lg-4 col-md-6 col-sm-12 p-3 bg-vivian-red')
+        if(item.payload.time[0].duration!=null&&item.payload.time[0].duration!=0){
+            console.log(item.payload)
+            summaryPie.append(card) 
+        }
         card.append(element)
         renderSegmentSummaryChart(element,item)  
        
@@ -470,7 +475,7 @@ const lostOpportunitySummarySegmentCharts = (data)=>{
 }
 
 const loadLostOpportunitySummaryPage = ( data )=>{
-    output.innerHTML= lostOpportunitySummaryCards(data);
+    output.innerHTML = (lostOpportunitySummaryCards(data));
     container.innerHTML  =  lostOpportunitySummaryTable( data );
     lostOpportunityStackedHourlyChart( data )
     output.append(lostOpportunitySummarySegmentCharts(data))
