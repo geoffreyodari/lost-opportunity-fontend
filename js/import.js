@@ -9,7 +9,8 @@ const sendSpreadSheetData= async (data)=>{
         }
 
     )
-    return await response.json()
+    document.querySelector("#importForm").innerHTML=`<h4 class="text-center">Importing...</h4>`
+    importResult ( await response.json())
 }
 
 const importSpreadsheetData = ()=>{
@@ -32,6 +33,10 @@ const importSpreadsheetData = ()=>{
     data.append('file',fileInput.files[0]);
 
     return (sendSpreadSheetData(data));
+}
+
+const importResult =(data)=>{
+    document.querySelector("#importForm").innerHTML=`<h4 class="text-center">${(data.success)?"Import was successful":"Import failed"}</h4>`;
 }
 
 

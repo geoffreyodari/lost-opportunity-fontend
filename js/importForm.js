@@ -1,5 +1,5 @@
 const importForm = ()=>{
-   document.querySelector("#output").innerHTML =`<div class="card  bg-vivian-red p-3 mb-3">
+   document.querySelector("#output").innerHTML =`<div class="card  bg-vivian-red p-3 mb-3" id="importForm">
                                                     <h4 class="text-center">Import Data</h4>
 
                                                     <form class="row">
